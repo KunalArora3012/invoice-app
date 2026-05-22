@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    background: #0a0f1c;
+    color: white;
+    font-family: Arial;
+}
+
+.nav {
+    background: #111827;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    background: #111827;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #14b8a6;
+}
+</style>
+</head>
+
+<body>
+
+
+<div class="nav">
+    <h2>Invoice Dashboard</h2>
+
+    <div>
+        <a href="/products/" style="color:#14b8a6; margin-right:20px;">Products</a>
+        <a href="/invoice/" style="color:#14b8a6; margin-right:20px;">Invoice</a>
+        <a href="/logout/" style="color:#14b8a6;">Logout</a>
+        <a href="/invoice/history/" style="color:#14b8a6;">Invoice History</a>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Welcome {{ user.name }}</h3>
+    <p><b>Department:</b> {{ user.department }}</p>
+    <p><b>Employee ID:</b> {{ user.emp_id }}</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    background:#0a0f1c;
+    color:white;
+    font-family:Arial;
+}
+
+.card{
+    background:#111827;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+button{
+    padding:10px;
+    background:#14b8a6;
+    border:none;
+    color:black;
+    cursor:pointer;
+}
+</style>
+
+<script>
+function printInvoice(){
+    window.print();
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Invoice #{{ invoice.id }}</h2>
+
+<p><b>Customer:</b> {{ invoice.customer.name }}</p>
+<p><b>Contact:</b> {{ invoice.customer.contact }}</p>
+<p><b>Address:</b> {{ invoice.customer.address }}</p>
+
+<hr>
+
+<h3>Products</h3>
+
+{% for item in items %}
+<p>
+    {{ item.product.name }}
+    |
+    Qty: {{ item.quantity }}
+    |
+    ₹{{ item.price }}
+</p>
+{% endfor %}
+
+<hr>
+
+<p><b>Tax:</b> ₹{{ invoice.tax }}</p>
+
+<h3>Total: ₹{{ invoice.total_amount }}</h3>
+
+<button onclick="printInvoice()">
+    Print Invoice
+</button>
+
+<a href="/invoice/download/{{ invoice.id }}/">
+    Download PDF
+</a>
+
+</div>
+
+</body>
+</html>

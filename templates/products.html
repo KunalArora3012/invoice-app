@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Products</title>
+
+<style>
+body {
+    background: #0a0f1c;
+    color: white;
+    font-family: Arial;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+.card {
+    background: #111827;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #14b8a6;
+}
+
+input {
+    padding: 10px;
+    margin: 5px;
+    background: #1f2937;
+    border: none;
+    color: white;
+}
+
+button {
+    padding: 10px;
+    background: #14b8a6;
+    border: none;
+    color: black;
+    font-weight: bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Product Management</h2>
+
+    <!-- Add Product -->
+    <div class="card">
+        <h3>Add Product</h3>
+        <form method="POST" action="/products/add/">
+          {% csrf_token %}
+          <input name="name" placeholder="Name">
+          <input name="price" placeholder="Price">
+          <input name="quantity" placeholder="Quantity">
+          <button>Add</button>
+        </form>
+        
+        <h3>Product List</h3>
+
+        {% for p in products %}
+        <p>
+          {{ p.name }} | ₹{{ p.price }} | Stock: {{ p.quantity }}
+          
+          <a href="/products/edit/{{ p.id }}/">Edit</a>
+          <a href="/products/delete/{{ p.id }}/">Delete</a>
+        </p>
+        {% endfor %}
+    </div>
+
+</div>
+
+</body>
+</html>

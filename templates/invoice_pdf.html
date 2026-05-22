@@ -1,0 +1,19 @@
+<h1>Invoice #{{ invoice.id }}</h1>
+
+<p>Customer: {{ invoice.customer.name }}</p>
+
+<hr>
+
+{% for item in items %}
+<p>
+    {{ item.product.name }}
+    - Qty: {{ item.quantity }}
+    - ₹{{ item.price }}
+</p>
+{% endfor %}
+
+<hr>
+
+<p>Tax: ₹{{ invoice.tax }}</p>
+
+<h2>Total: ₹{{ invoice.total_amount }}</h2>

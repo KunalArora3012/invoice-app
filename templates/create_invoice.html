@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Invoice</title>
+
+<style>
+body {
+    background: #0a0f1c;
+    color: white;
+    font-family: Arial;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+.card {
+    background: #111827;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #14b8a6;
+}
+
+input, select {
+    padding: 10px;
+    margin: 5px;
+    background: #1f2937;
+    border: none;
+    color: white;
+}
+
+button {
+    padding: 10px;
+    background: #14b8a6;
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+</style>
+
+<script>
+function addRow() {
+    let row = `
+    <div>
+        <select name="product">
+            {% for p in products %}
+            <option value="{{ p.id }}">{{ p.name }} (Stock: {{ p.quantity }})</option>
+            {% endfor %}
+        </select>
+        <input name="quantity" placeholder="Quantity">
+    </div>
+    `;
+    document.getElementById("items").innerHTML += row;
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Create Invoice</h2>
+
+{% if error %}
+<p style="color:red">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="card">
+    <h3>Customer Details</h3>
+    <input name="name" placeholder="Customer Name">
+    <input name="contact" placeholder="Contact">
+    <input name="address" placeholder="Address">
+</div>
+
+<div class="card">
+    <h3>Products</h3>
+
+    <div id="items">
+        <div>
+            <select name="product">
+                {% for p in products %}
+                <option value="{{ p.id }}">{{ p.name }}</option>
+                {% endfor %}
+            </select>
+            <input name="quantity" placeholder="Quantity">
+        </div>
+    </div>
+
+    <button type="button" onclick="addRow()">+ Add More</button>
+</div>
+
+<div class="card">
+    <h3>Payment</h3>
+    <select name="payment">
+        <option>Cash</option>
+        <option>UPI</option>
+        <option>Card</option>
+    </select>
+</div>
+
+<button>Create Invoice</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
