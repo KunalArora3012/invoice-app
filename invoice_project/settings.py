@@ -28,7 +28,11 @@ SECRET_KEY = 'django-insecure-i+q7dhoq(mns$37hd-v7(_)$y&q58fx-0=g(#wmivzd(tv7oo5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'invoice-app-msin.onrender.com',
+    '127.0.0.1',
+    'localhost'
+]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
