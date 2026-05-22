@@ -96,16 +96,16 @@ WSGI_APPLICATION = 'invoice_project.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 from dotenv import load_dotenv
-import os
+import dj_database_url
 
 load_dotenv()
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}# Password validation
+    'default': dj_database_url.parse(
+        os.environ.get("postgresql://invoice_user:QQNwoSmvagx6Km0BajaYKWSCm1a6qcE8@dpg-d8835buq1p3s73fs5lp0-a/invoice_db_dhu5")
+    )
+}
+
+# Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
